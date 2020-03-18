@@ -2,7 +2,9 @@ import { combineReducers } from 'redux'
 
 import {
   ADD_FEATURE,
-  INCREASE_PRICE
+  INCREASE_PRICE,
+  REMOVE_FEATURE,
+  UPDATE_TOTAL
 } from '../actions/index'
 
 let url = "https://i.imgur.com/N6uVfFr.png"
@@ -48,9 +50,10 @@ export const initialState = {
     features: []
   },
   additionalFeatures: [
-    {id: 1, name: 'DUAL MOTOR AWD', price: 10000},
-    {id: 2, name: 'TRI MOTOR AWD', price: 30000},
-    {id: 3, name: 'FULL SELF DRIVING', price: 7000} 
+    { id: 1, name: 'DUAL MOTOR AWD', price: 10000 },
+    { id: 2, name: 'TRI MOTOR AWD', price: 30000 },
+    { id: 3, name: 'FULL SELF DRIVING', price: 7000 },
+    { id: 4, name: 'DIGITAL ASSISTANT', price: 1000 } 
   ]
 }
 
@@ -65,6 +68,22 @@ export const cars = (state = initialState, action) => {
         features: [...state.car.features, action.payload]
       }
     }
+    case REMOVE_FEATURE :
+      return {
+        ...state,
+        additionalPrice: state.additionalPrice - action.payload.price,
+        car: {
+          ...state.car,
+          features: [
+            ...state.car.features.filter(item => item.id !== action.payload.id)
+          ]
+        }
+      }
+      case UPDATE_TOTAL : 
+      return {
+        ...state,
+        additionalPrice: state.car.features.reduce((a, b) => a + b.price, 0)
+      }
     default:
       return state
   }

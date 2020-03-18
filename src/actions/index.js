@@ -2,6 +2,10 @@
 export const ADD_FEATURE = 'ADD_FEATURE'
 
 export const INCREASE_PRICE = "INCREASE_PRICE"
+
+export const REMOVE_FEATURE = "REMOVE_FEATURE"
+
+export const UPDATE_TOTAL = "UPDATE_TOTAL"
 // other consts
 
 // action creators
@@ -24,4 +28,12 @@ export function increasePrice(price) {
 
 export const addFeature = feature => {
   return { type: ADD_FEATURE, payload: feature}
+}
+
+export const removeFeature = item => {
+  return {type: REMOVE_FEATURE, payload: item}
+}
+
+export const updateTotal = price => {
+  return {type: UPDATE_TOTAL, payload: price}
 }

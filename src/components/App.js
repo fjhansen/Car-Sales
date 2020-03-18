@@ -7,7 +7,9 @@ import Total from './Total';
 
 import { connect } from 'react-redux';
 import { 
-  addFeature
+  addFeature,
+  removeFeature,
+  updateTotal
  } from "../actions/index"
 
  import {cars} from '../reducers/index'
@@ -48,9 +50,7 @@ const App = props => {
         car={props.car} 
         />
 
-        <AddedFeatures 
-        car={props.car} 
-        />
+    
 
       </div>
 
@@ -58,11 +58,19 @@ const App = props => {
 
         <AdditionalFeatures
          additionalFeatures={props.additionalFeatures} 
+         addFeature={props.addFeature}
          />
+
+    <AddedFeatures 
+        car={props.car} 
+        removeFeature={props.removeFeature}
+        />
 
         <Total 
         car={props.car} 
-        additionalPrice={props.additionalPrice} 
+        additionalPrice={props.additionalPrice}
+        // updateTotal={props.updateTotal}
+        //price={props.updateTotal}
         />
 
       </div>
@@ -74,14 +82,15 @@ const App = props => {
 
   
   return {
-    additionalPrice: state.additionalPrice,
+    additionalPrice: state.car.price,
     car: state.car,
-    additionalFeatures: state.additionalFeatures
+    additionalFeatures: state.additionalFeatures,
+    // updateTotal: state.price
   }
 }
 
 
 
-export default connect(mapStateToProps, {addFeature})(App)
+export default connect(mapStateToProps, {addFeature, removeFeature})(App)
 
 // export default App

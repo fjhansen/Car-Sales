@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 
 import {
-  addFeature
+  addFeature,
+  removeFeature,
+  ADD_FEATURE,
+  updateTotal
 } from './actions/index'
 
 
@@ -34,7 +37,8 @@ console.log("GET STATE: ", store.getState())
 
  // Dispatch actions
 
- store.dispatch(addFeature('Test Feature'))
+ store.dispatch(addFeature(removeFeature))
+
 
 
 
