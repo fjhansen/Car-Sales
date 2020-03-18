@@ -1,20 +1,26 @@
 import React from 'react';
 
+
+import { useDispatch } from 'react-redux'
+import { addFeature } from '../actions/index'
+
+import { List } from 'semantic-ui-react'
+
+
 const AdditionalFeature = props => {
+  const dispatch = useDispatch();
   return (
-    <li>
-      {/* Add an onClick that will let you add a feature to your car */}
+    <List.Item>
+
       <button 
-      className="button" onClick={() => {
-        props.addFeature(props.feature)
-      }}
+      className="button" onClick={() => dispatch(addFeature(props.feature))}
       >
         Add
       </button>
 
       {props.feature.name} (+{props.feature.price})
 
-    </li>
+    </List.Item>
   );
 };
 

@@ -1,17 +1,23 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'
+
+import { removeFeature } from '../actions/index'
+import { List } from 'semantic-ui-react'
+
 
 const AddedFeature = props => {
+  const dispatch = useDispatch()
   return (
-    <li>
-      {/* Add an onClick to run a function to remove a feature */}
+    <List.Item>
+
       <button 
       className="button"
-      onClick={()=> {props.removeFeature(props.feature)}}
+      onClick={()=> dispatch(removeFeature(props.feature))}
       >
         X
       </button>
       {props.feature.name}
-    </li>
+    </List.Item>
   );
 };
 

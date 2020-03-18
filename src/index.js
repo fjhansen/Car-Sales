@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import 'semantic-ui-css/semantic.min.css'
+
+import './App.css'
+
 
 import {
   addFeature,
@@ -19,9 +23,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import {cars} from './reducers/index'
 
 
-import 'bulma/css/bulma.css';
-import './styles.scss';
-
 const store = createStore(cars, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
@@ -33,11 +34,11 @@ console.log("GET STATE: ", store.getState())
 // Everytime state changes, log it!
 //Unsubscribe is a state watcher
 
- const unsubscribe = store.subscribe(() => console.log("S P Y : ", store.getState()))
+//  const unsubscribe = store.subscribe(() => console.log("S P Y : ", store.getState()))
 
  // Dispatch actions
 
- store.dispatch(addFeature(removeFeature))
+//  store.dispatch(addFeature(removeFeature))
 
 
 

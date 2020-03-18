@@ -1,60 +1,28 @@
-import { combineReducers } from 'redux'
 
 import {
   ADD_FEATURE,
-  INCREASE_PRICE,
   REMOVE_FEATURE,
-  UPDATE_TOTAL
+
 } from '../actions/index'
 
 let url = "https://i.imgur.com/N6uVfFr.png"
-// const cars = (state = [{
-//   additionalPrice: 0,
-//   car: {
-//     price: 39900,
-//     name: 'TESLA CYBERTRUCK',
-//     image: {url},
-//     features: []
-//   },
-//   additionalFeatures: [
-//     {id: 1, name: 'DUAL MOTOR AWD', price: 10000},
-//     {id: 2, name: 'TRI MOTOR AWD', price: 30000},
-//     {id: 3, name: 'FULL SELF DRIVING', price: 7000}
-
-//   ]
-// }], action) => {
-//   switch (action.type) {
-//     case ADD_FEATURE :
-//       return {
-//         ...state,
-//         additionalPrice: state.additionalPrice + action.payload.price,
-//         car: {
-//           ...state.car,
-//           features: [...state.car.features, action.payload]
-//         }
-
-//       }
-
-//       default: 
-//       return state
-//   }
-// }
 
 
-export const initialState = {
-  additionalPrice: 0,
+
+const initialState = {
+  features: [
+    { id: 1, name: 'DUAL MOTOR AWD', price: 10000 },
+    { id: 2, name: 'TRI MOTOR AWD', price: 30000 },
+    { id: 3, name: 'FULL SELF DRIVING', price: 7000 },
+    { id: 4, name: 'DIGITAL ASSISTANT', price: 1000 }     
+  ],
+  featureCost: 0,
   car: {
     price: 39900,
     name: 'TESLA CYBERTRUCK',
     image: url,
     features: []
   },
-  additionalFeatures: [
-    { id: 1, name: 'DUAL MOTOR AWD', price: 10000 },
-    { id: 2, name: 'TRI MOTOR AWD', price: 30000 },
-    { id: 3, name: 'FULL SELF DRIVING', price: 7000 },
-    { id: 4, name: 'DIGITAL ASSISTANT', price: 1000 } 
-  ]
 }
 
 export const cars = (state = initialState, action) => {
@@ -62,30 +30,26 @@ export const cars = (state = initialState, action) => {
     case ADD_FEATURE :
     return {
       ...state,
-      additionalPrice: state.additionalPrice + action.payload.price,
+      features: state.features.filter((feature)=> feature.id !== action.payload.feature.id),
+      featureCost: state.featureCost + action.payload.feature.price,
       car: {
         ...state.car,
-        features: [...state.car.features, action.payload]
+        features: [...state.car.features, action.payload.feature]
       }
     }
-    case REMOVE_FEATURE :
-      return {
-        ...state,
-        additionalPrice: state.additionalPrice - action.payload.price,
-        car: {
-          ...state.car,
-          features: [
-            ...state.car.features.filter(item => item.id !== action.payload.id)
-          ]
-        }
+     case REMOVE_FEATURE:
+            return {
+                ...state,
+                features: [...state.features, action.payload.feature],
+                featureCost: state.featureCost - action.payload.feature.price,
+                car: {
+                    ...state.car,
+                    features: state.car.features.filter((feature) => feature.id !== action.payload.feature.id)
+                }
+            }
+        default :
+        return state;
       }
-      case UPDATE_TOTAL : 
-      return {
-        ...state,
-        additionalPrice: state.car.features.reduce((a, b) => a + b.price, 0)
-      }
-    default:
-      return state
-  }
-}
+    }
+      
 
