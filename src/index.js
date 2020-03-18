@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 
 import {
-  increasePrice
+  addFeature
 } from './actions/index'
 
 
@@ -13,13 +13,14 @@ import { Provider } from 'react-redux';
 
 import { configureStore } from '@reduxjs/toolkit';
 
-import cars from './reducers/index'
+import {cars} from './reducers/index'
 
 
 import 'bulma/css/bulma.css';
 import './styles.scss';
 
-const store = createStore(cars)
+const store = createStore(cars, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 
 // Log initial state
@@ -33,7 +34,7 @@ console.log("GET STATE: ", store.getState())
 
  // Dispatch actions
 
- store.dispatch(cars('Test Feature'))
+ store.dispatch(addFeature('Test Feature'))
 
 
 

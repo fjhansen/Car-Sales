@@ -16,7 +16,7 @@ let url = "https://i.imgur.com/N6uVfFr.png"
 //   ]
 // };
 
-const cars = (state = [{
+const carz = (state = [{
   additionalPrice: 0,
   car: {
     price: 39900,

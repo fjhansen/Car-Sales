@@ -1,5 +1,5 @@
 // action types
-export const ADD_FEATURES = 'ADD_FEATURE'
+export const ADD_FEATURE = 'ADD_FEATURE'
 
 export const INCREASE_PRICE = "INCREASE_PRICE"
 // other consts
@@ -18,6 +18,10 @@ export function increasePrice(price) {
   return { type: INCREASE_PRICE, price}
 }
 
-export function addFeature() {
-  
+// export function addFeature(feature) {
+//   return { type: ADD_FEATURE, payload: feature}
+// }
+
+export const addFeature = feature => {
+  return { type: ADD_FEATURE, payload: feature}
 }
